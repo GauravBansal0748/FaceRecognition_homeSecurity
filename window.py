@@ -13,7 +13,7 @@ def get_key(val):
             return True
 
 
-# function activated when ADD MEMBER is pressedqqqq
+# function activated when ADD MEMBER is pressed
 def btn_clicked_add_member():
     print("button clicked add member")
     videotoimg.subject = entry0.get()  # Saves the entered name into the subject variable

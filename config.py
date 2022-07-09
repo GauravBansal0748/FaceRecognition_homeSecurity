@@ -6,6 +6,9 @@ filename = "mycsvfile.csv"
 name_list = []
 with open(filename, 'r') as data:
     for line in csv.DictReader(data):
-        name[int(line['Id'])] = line['Name']
+        #if line[''] == '':
+            #continue
+        name[(line['Id'])] = line['Name']
 
 
+print(name)

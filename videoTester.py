@@ -26,7 +26,7 @@ def scan_image():
 
     # This module captures images via webcam and performs face recognition
     face_recognizer = cv2.face.LBPHFaceRecognizer_create()
-    face_recognizer.read('trainingData.yml')  # Load saved training data
+    face_recognizer.read('D:\GitHub\FaceRecognition_homeSecurity/trainingData.yml')  # Load saved training data
 
     cap = cv2.VideoCapture(0)
 
@@ -52,17 +52,27 @@ def scan_image():
             print("confidence_value:", confidence_value)
             print("label:", label)
             fr.draw_rect(test_img, face)
-            name_dict = config.name
-            try:
-                predicted_name = name_dict[label]
-            except KeyError:
-                print("No Username data found!! Reregister your Face")
+            #cofig.name_get
+            ################
+            filename = "D:\GitHub\FaceRecognition_homeSecurity/mycsvfile.csv"
+            name_dict = {}
+            with open(filename, 'r') as data:
+                for line in csv.DictReader(data):
+                    # if line[''] == '':q
+                    # continue
+                    name_dict[(line['Id'])] = line['Name']
+            print(name_dict)
+
+            #try:qqqq
+            predicted_name = name_dict[str(label)]
+            #except KeyError:
+            print("No Username data found!! Reregister your Face")
             if confidence_value < 45:  # If confidence less than 45 then don't print predicted face text on screen
                 # fr.put_text(test_img,predicted_name,x,y)
-                try:
-                    fr.put_text(test_img, predicted_name, x + 6, y + h - 6)
-                except Exception:
-                    print("No Username data found!! Reregister your Face")
+                #try:
+                fr.put_text(test_img, predicted_name, x + 6, y + h - 6)
+                #except Exception:
+                    #print("No Username data found!! Reregister your Face")
                 cv2.putText(test_img, "User Authenticated", (250, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 0, 0), 2)
                 if Flag:
                     try:

@@ -62,8 +62,7 @@ def add_member():
 
 
 def train_model():
-    # Comment belows lines when running this program second time.Since it saves training.yml file in directory
     faces, faceID = fr.labels_for_training_data('D:\GitHub\FaceRecognition_homeSecurity/trainingImages')
     face_recognizer = fr.train_classifier(faces, faceID)
-    face_recognizer.save('trainingData.yml')
+    face_recognizer.save('D:\GitHub\FaceRecognition_homeSecurity/trainingData.yml')
 
